@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yusuf Kose - Portfolio</title>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const { useState, useEffect } = React;
+
+        // Navigation Component
+        const Navigation = () => {
+            const [scrolled, setScrolled] = useState(false);
+
+            useEffect(() => {
+                const handleScroll = () => {
+                    setScrolled(window.scrollY > 50);
+                };
+                window.addEventListener('scroll', handleScroll);
+                return () => window.removeEventListener('scroll', handleScroll);
+            }, []);
+
+            const scrollToSection = (id) => {
+                document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+            };
+
+            return (
+                <nav className={`fixed w-full z-50 transition-all duration-300 ${scrolled ? 'bg-gray-900 shadow-lg' : 'bg-transparent'}`}>
+                    <div className="max-w-6xl mx-auto px-4 py-4">
+                        <div className="flex justify-between items-center">
+                            <h1 className="text-xl font-bold text-white">YK</h1>
+                            <div className="hidden md:flex space-x-8">
+                                {['about', 'experience', 'projects', 'skills', 'education', 'contact'].map(section => (
+                                    <button
+                                        key={section}
+                                        onClick={() => scrollToSection(section)}
+                                        className="text-gray-300 hover:text-blue-400 transition-colors capitalize"
+                                    >
+                                        {section}
+                                    </button>
+                                ))}
+                            </div>
+                        </div>
+                    </div>
+                </nav>
+            );
+        };
+
+        // Hero Section
+        const Hero = () => {
+            return (
+                <section className="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white">
+                    <div className="text-center px-4">
+                        <h1 className="text-5xl md:text-7xl font-bold mb-4">Yusuf Kose</h1>
+                        <p className="text-xl md:text-2xl text-blue-400 mb-6">Computer Engineering Student & Full Stack Developer</p>
+                        <p className="text-gray-300 max-w-2xl mx-auto mb-8">
+                            Building cross-platform mobile applications and intelligent systems with modern tech stacks
+                        </p>
+                        <div className="flex justify-center space-x-4">
+                            <a href="mailto:yusuf.kose@sjsu.edu" className="bg-blue-500 hover:bg-blue-600 px-6 py-3 rounded-lg transition-colors">
+                                Get In Touch
+                            </a>
+                            <button onClick={() => document.getElementById('projects').scrollIntoView({ behavior: 'smooth' })} className="border border-blue-500 text-blue-400 hover:bg-blue-500 hover:text-white px-6 py-3 rounded-lg transition-colors">
+                                View Projects
+                            </button>
+                        </div>
+                    </div>
+                </section>
+            );
+        };
+
+        // About Section
+        const About = () => {
+            return (
+                <section id="about" className="py-20 bg-gray-50">
+                    <div className="max-w-4xl mx-auto px-4">
+                        <h2 className="text-4xl font-bold mb-8 text-center">About Me</h2>
+                        <div className="bg-white rounded-lg shadow-lg p-8">
+                            <p className="text-gray-700 text-lg leading-relaxed mb-4">
+                                I'm a Computer Engineering student at San Jose State University with a passion for building innovative mobile applications and intelligent systems. Currently working as a Full Stack Developer Intern at Finally Free Productions, I specialize in cross-platform development using Flutter, React Native, and modern cloud technologies.
+                            </p>
+                            <p className="text-gray-700 text-lg leading-relaxed">
+                                My experience spans from developing AI-powered chatbots to leading team projects in partnership with industry leaders like Mainspring Energy. I'm always excited to tackle challenging problems and create solutions that make a real impact.
+                            </p>
+                        </div>
+                    </div>
+                </section>
+            );
+        };
+
+        // Experience Section
+        const Experience = () => {
+            const experiences = [
+                {
+                    title: "Full Stack Developer Intern",
+                    company: "Finally Free Productions",
+                    location: "New York City, NY",
+                    period: "December 2024 – Present",
+                    achievements: [
+                        "Collaborated with senior engineers to build cross-platform Flutter apps with advanced state management, REST API integrations, and cloud-based persistence using AWS EC2 and MongoDB Atlas, improving app responsiveness by ~20%",
+                        "Enhanced a fitness tracking application (over 1,000 downloads and a 4.8-star rating) through UI/UX improvements, bug fixes, and performance optimizations across Android and iOS platforms",
+                        "Designed and deployed a RESTful chat session management API with full CRUD operations on AWS and interactive Swagger UI documentation, streamlining testing and developer collaboration",
+                        "Participated in product testing and code reviews to identify early bugs and performance bottlenecks, maintaining detailed technical documentation and reducing API error rates by 15%"
+                    ]
+                },
+                {
+                    title: "Consultation Agent",
+                    company: "Geek Squad",
+                    location: "San Jose, CA",
+                    period: "Jun 2025 – Present",
+                    achievements: [
+                        "Implemented security measures including malware removal, encryption setup, and secure backups, reducing client vulnerability risks by 30–40% based on post-service scans",
+                        "Diagnosed and resolved hardware, software, and network issues for 20+ customers weekly, achieving a 50%+ first-contact resolution rate through systematic troubleshooting and clear documentation",
+                        "Performed device evaluations and product testing across Windows, macOS, and mobile platforms, optimizing configurations to improve system performance by 20–35%"
+                    ]
+                }
+            ];
+
+            return (
+                <section id="experience" className="py-20 bg-white">
+                    <div className="max-w-6xl mx-auto px-4">
+                        <h2 className="text-4xl font-bold mb-12 text-center">Experience</h2>
+                        <div className="space-y-8">
+                            {experiences.map((exp, index) => (
+                                <div key={index} className="bg-gray-50 rounded-lg shadow-lg p-8 hover:shadow-xl transition-shadow">
+                                    <div className="flex flex-col md:flex-row md:justify-between md:items-start mb-4">
+                                        <div>
+                                            <h3 className="text-2xl font-bold text-gray-900">{exp.title}</h3>
+                                            <p className="text-xl text-blue-600">{exp.company}</p>
+                                            <p className="text-gray-600">{exp.location}</p>
+                                        </div>
+                                        <span className="text-gray-500 mt-2 md:mt-0">{exp.period}</span>
+                                    </div>
+                                    <ul className="space-y-2">
+                                        {exp.achievements.map((achievement, idx) => (
+                                            <li key={idx} className="text-gray-700 flex">
+                                                <span className="text-blue-500 mr-2">▹</span>
+                                                <span>{achievement}</span>
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                </section>
+            );
+        };
+
+        // Projects Section
+        const Projects = () => {
+            const projects = [
+                {
+                    title: "Jarvis AI Assistant",
+                    subtitle: "Cross-Platform Conversational Chatbot",
+                    description: "A multi-platform AI assistant using Flutter, Firebase, and Google Cloud, integrating the Anthropic Claude API for real-time conversational intelligence with contextual memory.",
+                    tech: ["Flutter", "Firebase", "Google Cloud", "Claude API", "BLE", "GitHub Actions"],
+                    features: [
+                        "Architected an asynchronous chat system using StreamBuilder and provider-based state management to support concurrent sessions, reduce latency, and ensure smooth message rendering",
+                        "Implemented Firebase Authentication and Firestore persistence with secure access rules for cross-device session continuity",
+                        "Integrated Bluetooth Low Energy (BLE) and text-to-speech/voice recognition for interactive user control",
+                        "Automated build, testing, and release workflows via GitHub Actions and Firebase App Distribution"
+                    ],
+                    image: "https://via.placeholder.com/600x400/3B82F6/FFFFFF?text=Jarvis+AI+Assistant",
+                    github: "#"
+                },
+                {
+                    title: "MSE Data Bridge",
+                    subtitle: "Schema-Driven Code Generation System (Group Lead)",
+                    description: "Leading a team of 4 student engineers in partnership with Mainspring Energy to develop a Proto3-based code generation tool using Python/Rust that automates DDS↔C++ adapter creation.",
+                    tech: ["Python", "Rust", "Proto3", "DDS", "C++", "GoogleTest", "CI/CD"],
+                    features: [
+                        "Developing a code generation tool that eliminates manual data converters across embedded and server platforms",
+                        "Designing automated CI/CD pipeline with schema registry to enforce backward compatibility, field coverage validation, and property-based testing",
+                        "Architecting lightweight runtime adapters supporting DDS, Protobuf, FlatBuffers, and JSON/TOML with zero-copy optimization for embedded sensor networks and cloud gateway integration"
+                    ],
+                    image: "https://via.placeholder.com/600x400/10B981/FFFFFF?text=MSE+Data+Bridge",
+                    github: "#"
+                }
+            ];
+
+            return (
+                <section id="projects" className="py-20 bg-gray-50">
+                    <div className="max-w-6xl mx-auto px-4">
+                        <h2 className="text-4xl font-bold mb-12 text-center">Projects</h2>
+                        <div className="space-y-12">
+                            {projects.map((project, index) => (
+                                <div key={index} className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-2xl transition-shadow">
+                                    <div className={`flex flex-col ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'}`}>
+                                        <div className="md:w-1/2">
+                                            <img src={project.image} alt={project.title} className="w-full h-full object-cover" />
+                                        </div>
+                                        <div className="md:w-1/2 p-8">
+                                            <h3 className="text-2xl font-bold text-gray-900 mb-2">{project.title}</h3>
+                                            <p className="text-blue-600 mb-4">{project.subtitle}</p>
+                                            <p className="text-gray-700 mb-4">{project.description}</p>
+                                            <div className="mb-4">
+                                                <h4 className="font-semibold text-gray-900 mb-2">Key Features:</h4>
+                                                <ul className="space-y-1">
+                                                    {project.features.map((feature, idx) => (
+                                                        <li key={idx} className="text-gray-600 text-sm flex">
+                                                            <span className="text-blue-500 mr-2">•</span>
+                                                            <span>{feature}</span>
+                                                        </li>
+                                                    ))}
+                                                </ul>
+                                            </div>
+                                            <div className="mb-4">
+                                                <div className="flex flex-wrap gap-2">
+                                                    {project.tech.map((tech, idx) => (
+                                                        <span key={idx} className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">
+                                                            {tech}
+                                                        </span>
+                                                    ))}
+                                                </div>
+                                            </div>
+                                            <a href={project.github} className="inline-flex items-center text-blue-600 hover:text-blue-700">
+                                                <i className="fab fa-github mr-2"></i>
+                                                View on GitHub
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                </section>
+            );
+        };
+
+        // Skills Section
+        const Skills = () => {
+            const skillCategories = [
+                {
+                    title: "Languages",
+                    skills: ["Java", "C++", "C", "Python", "Dart", "Verilog", "System Verilog"]
+                },
+                {
+                    title: "Frameworks & Libraries",
+                    skills: ["Flutter", "React Native", ".NET MAUI", "Node.js", "Express.js"]
+                },
+                {
+                    title: "Tools & Technologies",
+                    skills: ["Git", "Linux", "AWS EC2", "Microsoft Azure", "MongoDB Atlas", "Firebase", "JUnit", "Jupyter", "MATLAB", "Altium Designer", "Vivado", "Quartus", "ModelSim", "DDS"]
+                },
+                {
+                    title: "Additional Skills",
+                    skills: ["Cross-Platform Mobile Development", "RESTful API Design", "CI/CD Pipelines", "Cloud Connectivity", "Data Visualization", "Technical Documentation", "Agile Development", "System Integration", "Security & Encryption"]
+                }
+            ];
+
+            return (
+                <section id="skills" className="py-20 bg-white">
+                    <div className="max-w-6xl mx-auto px-4">
+                        <h2 className="text-4xl font-bold mb-12 text-center">Technical Skills</h2>
+                        <div className="grid md:grid-cols-2 gap-8">
+                            {skillCategories.map((category, index) => (
+                                <div key={index} className="bg-gray-50 rounded-lg shadow-lg p-6">
+                                    <h3 className="text-xl font-bold text-gray-900 mb-4">{category.title}</h3>
+                                    <div className="flex flex-wrap gap-2">
+                                        {category.skills.map((skill, idx) => (
+                                            <span key={idx} className="bg-blue-100 text-blue-800 px-3 py-2 rounded-lg text-sm">
+                                                {skill}
+                                            </span>
+                                        ))}
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                </section>
+            );
+        };
+
+        // Education Section
+        const Education = () => {
+            return (
+                <section id="education" className="py-20 bg-gray-50">
+                    <div className="max-w-4xl mx-auto px-4">
+                        <h2 className="text-4xl font-bold mb-12 text-center">Education</h2>
+                        <div className="bg-white rounded-lg shadow-lg p-8">
+                            <div className="flex flex-col md:flex-row md:justify-between md:items-start mb-4">
+                                <div>
+                                    <h3 className="text-2xl font-bold text-gray-900">San Jose State University</h3>
+                                    <p className="text-xl text-blue-600">Bachelor of Science in Computer Engineering</p>
+                                    <p className="text-gray-600">GPA: 3.50</p>
+                                </div>
+                                <span className="text-gray-500 mt-2 md:mt-0">Expected Spring 2026</span>
+                            </div>
+                            <div className="mt-6">
+                                <h4 className="font-semibold text-gray-900 mb-3">Related Coursework:</h4>
+                                <div className="flex flex-wrap gap-2">
+                                    {[
+                                        "Advanced Algorithm Design",
+                                        "Assembly Language Programming",
+                                        "Digital Design",
+                                        "Compiler Design",
+                                        "Computer Architecture and Design",
+                                        "Computer Networks",
+                                        "Electronics for Computing Systems",
+                                        "Microprocessor Design",
+                                        "Operating Systems Design"
+                                    ].map((course, idx) => (
+                                        <span key={idx} className="bg-gray-100 text-gray-700 px-3 py-1 rounded text-sm">
+                                            {course}
+                                        </span>
+                                    ))}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            );
+        };
+
+        // Contact Section
+        const Contact = () => {
+            return (
+                <section id="contact" className="py-20 bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white">
+                    <div className="max-w-4xl mx-auto px-4 text-center">
+                        <h2 className="text-4xl font-bold mb-8">Get In Touch</h2>
+                        <p className="text-xl text-gray-300 mb-8">
+                            I'm always open to new opportunities and collaborations. Feel free to reach out!
+                        </p>
+                        <div className="flex flex-col md:flex-row justify-center items-center space-y-4 md:space-y-0 md:space-x-8 mb-8">
+                            <a href="mailto:yusuf.kose@sjsu.edu" className="flex items-center text-blue-400 hover:text-blue-300 transition-colors">
+                                <i className="fas fa-envelope mr-2"></i>
+                                yusuf.kose@sjsu.edu
+                            </a>
+                            <a href="tel:9199031080" className="flex items-center text-blue-400 hover:text-blue-300 transition-colors">
+                                <i className="fas fa-phone mr-2"></i>
+                                (919) 903-1080
+                            </a>
+                            <p className="flex items-center text-gray-400">
+                                <i className="fas fa-map-marker-alt mr-2"></i>
+                                San Jose, CA
+                            </p>
+                        </div>
+                        <div className="flex justify-center space-x-6">
+                            <a href="#" className="text-gray-400 hover:text-blue-400 transition-colors text-2xl">
+                                <i className="fab fa-github"></i>
+                            </a>
+                            <a href="#" className="text-gray-400 hover:text-blue-400 transition-colors text-2xl">
+                                <i className="fab fa-linkedin"></i>
+                            </a>
+                        </div>
+                    </div>
+                </section>
+            );
+        };
+
+        // Footer
+        const Footer = () => {
+            return (
+                <footer className="bg-gray-900 text-gray-400 py-8">
+                    <div className="max-w-6xl mx-auto px-4 text-center">
+                        <p>&copy; 2025 Yusuf Kose. All rights reserved.</p>
+                    </div>
+                </footer>
+            );
+        };
+
+        // Main App Component
+        const App = () => {
+            return (
+                <div className="font-sans">
+                    <Navigation />
+                    <Hero />
+                    <About />
+                    <Experience />
+                    <Projects />
+                    <Skills />
+                    <Education />
+                    <Contact />
+                    <Footer />
+                </div>
+            );
+        };
+
+        ReactDOM.render(<App />, document.getElementById('root'));
+    </script>
+</body>
+</html>
