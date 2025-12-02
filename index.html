@@ -561,17 +561,18 @@
                                             </div>
                                         )}
                                         {((exp.media && exp.media.length > 0) || (exp.images && exp.images.length > 0)) && (
-                                            <div style={{display: 'flex', justifyContent: 'flex-end', marginTop: '10px', alignItems: 'center', gap: '8px'}}>
-                                                <span style={{fontSize: '14px', color: '#aaa'}}>View Media</span>
+                                            <div style={{display: 'flex', justifyContent: 'flex-end', marginTop: '10px'}}>
                                                 <button
+                                                    className="btn"
                                                     style={{
-                                                        background: 'transparent',
-                                                        border: 'none',
-                                                        color: '#e94560',
-                                                        fontSize: '16px',
+                                                        background: '#0f3460',
+                                                        border: '2px solid #533483',
+                                                        color: '#eee',
+                                                        padding: '8px 16px',
+                                                        fontFamily: 'Press Start 2P',
+                                                        fontSize: '10px',
                                                         cursor: 'pointer',
-                                                        padding: '4px',
-                                                        fontFamily: 'VT323'
+                                                        transition: 'all 0.3s'
                                                     }}
                                                     onClick={(e) => {
                                                         e.stopPropagation();
@@ -580,7 +581,7 @@
                                                     }}
                                                     title="View media"
                                                 >
-                                                    →
+                                                    View Media
                                                 </button>
                                             </div>
                                         )}
@@ -746,28 +747,27 @@
                                                 )}
                                             </div>
                                             {((project.media && project.media.length > 0) || (project.images && project.images.length > 0)) && (
-                                                <div style={{display: 'flex', alignItems: 'center', gap: '8px'}}>
-                                                    <span style={{fontSize: '14px', color: '#aaa'}}>View Media</span>
-                                                    <button
-                                                        style={{
-                                                            background: 'transparent',
-                                                            border: 'none',
-                                                            color: '#e94560',
-                                                            fontSize: '16px',
-                                                            cursor: 'pointer',
-                                                            padding: '4px',
-                                                            fontFamily: 'VT323'
-                                                        }}
-                                                        onClick={(e) => {
-                                                            e.stopPropagation();
-                                                            setCurrentImages(project.media || project.images);
-                                                            setPhotoViewerOpen(true);
-                                                        }}
-                                                        title="View photos"
-                                                    >
-                                                        →
-                                                    </button>
-                                                </div>
+                                                <button
+                                                    className="btn"
+                                                    style={{
+                                                        background: '#0f3460',
+                                                        border: '2px solid #533483',
+                                                        color: '#eee',
+                                                        padding: '8px 16px',
+                                                        fontFamily: 'Press Start 2P',
+                                                        fontSize: '10px',
+                                                        cursor: 'pointer',
+                                                        transition: 'all 0.3s'
+                                                    }}
+                                                    onClick={(e) => {
+                                                        e.stopPropagation();
+                                                        setCurrentImages(project.media || project.images);
+                                                        setPhotoViewerOpen(true);
+                                                    }}
+                                                    title="View photos"
+                                                >
+                                                    View Media
+                                                </button>
                                             )}
                                         </div>
                                     </div>
