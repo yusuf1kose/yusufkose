@@ -1,20 +1,20 @@
 .hero {
-  padding: 60px 20px 30px;
+  padding: 40px 20px 20px;
   text-align: center;
-  min-height: 40vh;
+  min-height: 25vh;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
 .hero-content {
-  max-width: 800px;
+  max-width: 750px;
   margin: 0 auto;
 }
 
 .hero h1 {
-  font-size: 3rem;
-  margin-bottom: 15px;
+  font-size: 2.2rem;
+  margin-bottom: 12px;
   color: #e94560;
   font-family: 'Press Start 2P', cursive;
   animation: fadeInUp 0.8s ease-out;
@@ -38,9 +38,9 @@
 }
 
 .location {
-  font-size: 1.2rem;
+  font-size: 1rem;
   color: #aaa;
-  margin-bottom: 20px;
+  margin-bottom: 15px;
   animation: fadeInUp 0.8s ease-out 0.2s both;
 }
 
@@ -49,8 +49,8 @@
 }
 
 .hero-description {
-  font-size: 1.2rem;
-  line-height: 1.8;
+  font-size: 1.05rem;
+  line-height: 1.7;
   color: #ccc;
   animation: fadeInUp 0.8s ease-out 0.4s both;
 }
@@ -67,11 +67,15 @@
 }
 
 @media (max-width: 768px) {
+  .hero {
+    padding: 30px 20px 15px;
+  }
+  
   .hero h1 {
-    font-size: 2rem;
+    font-size: 1.6rem;
   }
   
   .hero-description {
-    font-size: 1rem;
+    font-size: 0.95rem;
   }
 }

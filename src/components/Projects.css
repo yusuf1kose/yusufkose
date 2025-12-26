@@ -1,26 +1,26 @@
 .projects-section {
-  padding: 60px 20px;
-  max-width: 1400px;
+  padding: 40px 20px;
+  max-width: 1200px;
   margin: 0 auto;
 }
 
 .section-title {
   text-align: center;
-  font-size: 2rem;
-  margin-bottom: 40px;
+  font-size: 1.8rem;
+  margin-bottom: 30px;
   color: #e94560;
   font-family: 'Press Start 2P', cursive;
 }
 
 .projects-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 18px;
   transition: all 0.5s ease;
 }
 
 .projects-grid.has-expanded {
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: repeat(2, 1fr);
 }
 
 .project-card {
@@ -31,17 +31,17 @@
   overflow: hidden;
   transition: all 0.5s ease;
   cursor: pointer;
-  min-height: 220px;
+  min-height: 180px;
 }
 
 .project-card.expanded {
-  grid-column: span 3;
+  grid-column: span 2;
   cursor: default;
 }
 
 .project-card.collapsed {
-  opacity: 0.6;
-  transform: scale(0.95);
+  opacity: 0.5;
+  transform: scale(0.97);
 }
 
 .card-glow {
@@ -78,11 +78,11 @@
 .card-content {
   position: relative;
   z-index: 2;
-  padding: 20px;
+  padding: 18px;
 }
 
 .card-header h3 {
-  font-size: 1.1rem;
+  font-size: 1rem;
   color: #e94560;
   margin-bottom: 6px;
   font-family: 'Press Start 2P', cursive;
@@ -90,24 +90,24 @@
 }
 
 .subtitle {
-  font-size: 0.95rem;
+  font-size: 0.9rem;
   color: #aaa;
-  margin-bottom: 12px;
+  margin-bottom: 10px;
 }
 
 .tech-tags {
   display: flex;
   flex-wrap: wrap;
   gap: 6px;
-  margin-bottom: 12px;
+  margin-bottom: 10px;
 }
 
 .tech-tag {
   background: #0f3460;
   color: #eee;
-  padding: 4px 10px;
+  padding: 4px 9px;
   border-radius: 5px;
-  font-size: 0.75rem;
+  font-size: 0.7rem;
   border: 1px solid #533483;
   transition: all 0.3s;
 }
@@ -119,12 +119,12 @@
 
 .tech-more {
   color: #aaa;
-  padding: 4px 10px;
-  font-size: 0.75rem;
+  padding: 4px 9px;
+  font-size: 0.7rem;
 }
 
 .card-body {
-  margin: 20px 0;
+  margin: 18px 0;
   animation: slideDown 0.4s ease;
 }
 
@@ -140,18 +140,18 @@
 }
 
 .description {
-  font-size: 1rem;
+  font-size: 0.95rem;
   line-height: 1.6;
   color: #ccc;
-  margin-bottom: 20px;
+  margin-bottom: 18px;
 }
 
 .features {
-  margin-bottom: 20px;
+  margin-bottom: 18px;
 }
 
 .features-title, .tech-title {
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   color: #aaa;
   margin-bottom: 10px;
 }
@@ -163,9 +163,9 @@
 
 .features li {
   position: relative;
-  padding-left: 20px;
+  padding-left: 18px;
   margin-bottom: 10px;
-  font-size: 0.95rem;
+  font-size: 0.9rem;
   line-height: 1.6;
   color: #ddd;
 }
@@ -178,8 +178,8 @@
 }
 
 .all-tech {
-  margin-top: 20px;
-  padding-top: 20px;
+  margin-top: 18px;
+  padding-top: 18px;
   border-top: 2px solid #0f3460;
 }
 
@@ -189,8 +189,8 @@
   align-items: center;
   flex-wrap: wrap;
   gap: 10px;
-  margin-top: 20px;
-  padding-top: 20px;
+  margin-top: 18px;
+  padding-top: 18px;
   border-top: 2px solid #0f3460;
 }
 
@@ -204,7 +204,7 @@
   background: #0f3460;
   border: 2px solid #533483;
   color: #eee;
-  padding: 8px 16px;
+  padding: 7px 14px;
   font-family: 'Press Start 2P', cursive;
   font-size: 0.6rem;
   cursor: pointer;
@@ -250,7 +250,7 @@
 
 @media (max-width: 768px) {
   .section-title {
-    font-size: 1.5rem;
+    font-size: 1.4rem;
   }
   
   .projects-grid {
@@ -262,7 +262,7 @@
   }
   
   .card-header h3 {
-    font-size: 1rem;
+    font-size: 0.9rem;
   }
   
   .project-btn {

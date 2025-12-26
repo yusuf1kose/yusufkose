@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import './Projects.css';
 import PhotoViewer from './PhotoViewer';
 
@@ -6,6 +6,7 @@ const Projects = () => {
   const [expandedIndex, setExpandedIndex] = useState(null);
   const [photoViewerOpen, setPhotoViewerOpen] = useState(false);
   const [currentImages, setCurrentImages] = useState([]);
+  const cardRefs = useRef([]);
 
   const projects = [
     {
@@ -79,7 +80,25 @@ const Projects = () => {
   ];
 
   const handleCardClick = (index) => {
-    setExpandedIndex(expandedIndex === index ? null : index);
+    const newIndex = expandedIndex === index ? null : index;
+    setExpandedIndex(newIndex);
+    
+    if (newIndex !== null) {
+      setTimeout(() => {
+        const card = cardRefs.current[newIndex];
+        if (card) {
+          const navHeight = 60;
+          const offset = 20;
+          const elementPosition = card.getBoundingClientRect().top;
+          const offsetPosition = elementPosition + window.pageYOffset - navHeight - offset;
+          
+          window.scrollTo({
+            top: offsetPosition,
+            behavior: 'smooth'
+          });
+        }
+      }, 100);
+    }
   };
 
   return (
@@ -89,7 +108,8 @@ const Projects = () => {
       <div className={`projects-grid ${expandedIndex !== null ? 'has-expanded' : ''}`}>
         {projects.map((project, index) => (
           <div 
-            key={index} 
+            key={index}
+            ref={el => cardRefs.current[index] = el}
             className={`project-card ${expandedIndex === index ? 'expanded' : ''} ${expandedIndex !== null && expandedIndex !== index ? 'collapsed' : ''}`}
           >
             <div className="card-glow"></div>

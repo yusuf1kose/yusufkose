@@ -1,21 +1,21 @@
 .experience-section {
-  padding: 60px 20px;
-  max-width: 1400px;
+  padding: 40px 20px;
+  max-width: 1200px;
   margin: 0 auto;
 }
 
 .section-title {
   text-align: center;
-  font-size: 2rem;
-  margin-bottom: 40px;
+  font-size: 1.8rem;
+  margin-bottom: 30px;
   color: #e94560;
   font-family: 'Press Start 2P', cursive;
 }
 
 .experience-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 18px;
   transition: all 0.5s ease;
 }
 
@@ -27,7 +27,7 @@
   overflow: hidden;
   transition: all 0.5s ease;
   cursor: pointer;
-  min-height: 180px;
+  min-height: 150px;
 }
 
 .experience-card.expanded {
@@ -36,8 +36,8 @@
 }
 
 .experience-card.collapsed {
-  opacity: 0.6;
-  transform: scale(0.95);
+  opacity: 0.5;
+  transform: scale(0.97);
 }
 
 .experience-card .card-glow {
@@ -74,48 +74,48 @@
 .experience-card .card-content {
   position: relative;
   z-index: 2;
-  padding: 20px;
+  padding: 18px;
 }
 
 .exp-header {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  gap: 15px;
+  gap: 12px;
   margin-bottom: 0;
   flex-wrap: wrap;
 }
 
 .experience-card.expanded .exp-header {
-  margin-bottom: 20px;
+  margin-bottom: 18px;
 }
 
 .exp-title-section {
   flex: 1;
-  min-width: 200px;
+  min-width: 180px;
 }
 
 .exp-header h3 {
-  font-size: 1rem;
+  font-size: 0.95rem;
   color: #e94560;
-  margin-bottom: 6px;
+  margin-bottom: 5px;
   font-family: 'Press Start 2P', cursive;
   line-height: 1.4;
 }
 
 .company {
-  font-size: 0.95rem;
+  font-size: 0.9rem;
   color: #e94560;
-  margin-bottom: 4px;
+  margin-bottom: 3px;
 }
 
 .location {
-  font-size: 0.85rem;
+  font-size: 0.8rem;
   color: #aaa;
 }
 
 .period {
-  font-size: 0.85rem;
+  font-size: 0.8rem;
   color: #aaa;
   white-space: nowrap;
 }
@@ -140,10 +140,10 @@
 
 .achievements li {
   position: relative;
-  padding-left: 20px;
-  margin-bottom: 12px;
-  font-size: 0.95rem;
-  line-height: 1.7;
+  padding-left: 18px;
+  margin-bottom: 10px;
+  font-size: 0.9rem;
+  line-height: 1.6;
   color: #ddd;
 }
 
@@ -156,13 +156,13 @@
 }
 
 .articles-section {
-  margin-top: 20px;
+  margin-top: 18px;
   padding-top: 15px;
   border-top: 2px solid #0f3460;
 }
 
 .articles-title {
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   color: #aaa;
   margin-bottom: 10px;
 }
@@ -175,8 +175,8 @@
 
 .article-link {
   position: relative;
-  padding-left: 20px;
-  font-size: 0.9rem;
+  padding-left: 18px;
+  font-size: 0.85rem;
   color: #e94560;
   text-decoration: none;
   transition: all 0.3s;
@@ -191,7 +191,7 @@
 
 .article-link:hover {
   color: #ff6b81;
-  padding-left: 25px;
+  padding-left: 22px;
 }
 
 .media-button-container {
@@ -206,7 +206,7 @@
   background: #0f3460;
   border: 2px solid #533483;
   color: #eee;
-  padding: 8px 16px;
+  padding: 7px 14px;
   font-family: 'Press Start 2P', cursive;
   font-size: 0.6rem;
   cursor: pointer;
@@ -245,7 +245,7 @@
   }
   
   .exp-header h3 {
-    font-size: 0.9rem;
+    font-size: 0.85rem;
   }
   
   .exp-header {

@@ -1,13 +1,14 @@
 .navigation {
   width: 100%;
   background: #16213e;
-  padding: 12px;
+  padding: 10px 15px;
   border-top: 3px solid #0f3460;
   border-bottom: 3px solid #0f3460;
   display: flex;
   justify-content: center;
+  align-items: center;
   flex-wrap: wrap;
-  gap: 10px;
+  gap: 8px;
   position: sticky;
   top: 0;
   z-index: 100;
@@ -18,14 +19,15 @@
   background: #0f3460;
   border: 2px solid #533483;
   color: #eee;
-  padding: 6px 12px;
+  padding: 6px 10px;
   font-family: 'Press Start 2P', cursive;
-  font-size: 8px;
+  font-size: 7px;
   cursor: pointer;
   transition: all 0.3s;
   position: relative;
   overflow: hidden;
   white-space: nowrap;
+  flex-shrink: 0;
 }
 
 .nav-btn::before {
@@ -54,7 +56,7 @@
 
 @media (max-width: 768px) {
   .nav-btn {
-    font-size: 7px;
-    padding: 5px 10px;
+    font-size: 6px;
+    padding: 5px 8px;
   }
 }
