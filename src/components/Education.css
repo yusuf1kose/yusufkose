@@ -1,0 +1,133 @@
+.education-section {
+  padding: 60px 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.education-card {
+  position: relative;
+  background: #16213e;
+  border: 2px solid #0f3460;
+  border-radius: 10px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.education-card .card-glow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(
+    circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+    rgba(233, 69, 96, 0.15) 0%,
+    transparent 50%
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.education-card:hover .card-glow {
+  opacity: 1;
+}
+
+.education-card:hover {
+  transform: translateY(-3px);
+  border-color: #533483;
+  box-shadow: 0 8px 25px rgba(233, 69, 96, 0.25);
+}
+
+.education-card .card-content {
+  position: relative;
+  z-index: 2;
+  padding: 30px;
+}
+
+.edu-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 15px;
+  margin-bottom: 25px;
+  flex-wrap: wrap;
+}
+
+.edu-header h3 {
+  font-size: 1.5rem;
+  color: #e94560;
+  margin-bottom: 10px;
+  font-family: 'Press Start 2P', cursive;
+  line-height: 1.4;
+}
+
+.degree {
+  font-size: 1.1rem;
+  margin-bottom: 5px;
+  color: #ddd;
+}
+
+.gpa {
+  font-size: 1.1rem;
+  color: #e94560;
+}
+
+.graduation {
+  font-size: 0.95rem;
+  color: #aaa;
+  white-space: nowrap;
+}
+
+.coursework {
+  border-top: 2px solid #0f3460;
+  padding-top: 20px;
+}
+
+.coursework-title {
+  font-size: 0.95rem;
+  color: #aaa;
+  margin-bottom: 15px;
+}
+
+.courses-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 12px;
+}
+
+.course-item {
+  font-size: 0.95rem;
+  color: #ddd;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.3s;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.course-item:hover {
+  background: rgba(233, 69, 96, 0.1);
+  padding-left: 12px;
+}
+
+.arrow {
+  color: #e94560;
+  font-weight: bold;
+}
+
+@media (max-width: 768px) {
+  .edu-header {
+    flex-direction: column;
+  }
+  
+  .edu-header h3 {
+    font-size: 1.2rem;
+  }
+  
+  .courses-grid {
+    grid-template-columns: 1fr;
+  }
+}

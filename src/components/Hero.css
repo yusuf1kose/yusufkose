@@ -1,0 +1,77 @@
+.hero {
+  padding: 60px 20px 30px;
+  text-align: center;
+  min-height: 40vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-content {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.hero h1 {
+  font-size: 3rem;
+  margin-bottom: 15px;
+  color: #e94560;
+  font-family: 'Press Start 2P', cursive;
+  animation: fadeInUp 0.8s ease-out;
+}
+
+.glitch {
+  position: relative;
+  animation: glitch 3s infinite;
+}
+
+@keyframes glitch {
+  0%, 90%, 100% {
+    text-shadow: none;
+  }
+  92% {
+    text-shadow: 2px 0 #00ffff, -2px 0 #ff00ff;
+  }
+  94% {
+    text-shadow: -2px 0 #00ffff, 2px 0 #ff00ff;
+  }
+}
+
+.location {
+  font-size: 1.2rem;
+  color: #aaa;
+  margin-bottom: 20px;
+  animation: fadeInUp 0.8s ease-out 0.2s both;
+}
+
+.location i {
+  margin-right: 8px;
+}
+
+.hero-description {
+  font-size: 1.2rem;
+  line-height: 1.8;
+  color: #ccc;
+  animation: fadeInUp 0.8s ease-out 0.4s both;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 768px) {
+  .hero h1 {
+    font-size: 2rem;
+  }
+  
+  .hero-description {
+    font-size: 1rem;
+  }
+}

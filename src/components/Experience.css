@@ -1,0 +1,212 @@
+.experience-section {
+  padding: 60px 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.experience-grid {
+  display: grid;
+  gap: 20px;
+}
+
+.experience-card {
+  position: relative;
+  background: #16213e;
+  border: 2px solid #0f3460;
+  border-radius: 10px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.experience-card .card-glow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(
+    circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+    rgba(233, 69, 96, 0.15) 0%,
+    transparent 50%
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.experience-card:hover .card-glow {
+  opacity: 1;
+}
+
+.experience-card:hover {
+  transform: translateY(-3px);
+  border-color: #533483;
+  box-shadow: 0 8px 25px rgba(233, 69, 96, 0.25);
+}
+
+.experience-card .card-content {
+  position: relative;
+  z-index: 2;
+  padding: 25px;
+}
+
+.exp-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 15px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.exp-title-section {
+  flex: 1;
+  min-width: 200px;
+}
+
+.exp-header h3 {
+  font-size: 1.3rem;
+  color: #e94560;
+  margin-bottom: 8px;
+  font-family: 'Press Start 2P', cursive;
+  line-height: 1.4;
+}
+
+.company {
+  font-size: 1.1rem;
+  color: #e94560;
+  margin-bottom: 5px;
+}
+
+.location {
+  font-size: 0.95rem;
+  color: #aaa;
+}
+
+.period {
+  font-size: 0.95rem;
+  color: #aaa;
+  white-space: nowrap;
+}
+
+.achievements {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 15px;
+}
+
+.achievements li {
+  position: relative;
+  padding-left: 20px;
+  margin-bottom: 12px;
+  font-size: 1rem;
+  line-height: 1.7;
+  color: #ddd;
+}
+
+.achievements li::before {
+  content: '→';
+  position: absolute;
+  left: 0;
+  color: #e94560;
+  font-weight: bold;
+}
+
+.articles-section {
+  margin-top: 20px;
+  padding-top: 15px;
+  border-top: 2px solid #0f3460;
+}
+
+.articles-title {
+  font-size: 0.95rem;
+  color: #aaa;
+  margin-bottom: 10px;
+}
+
+.articles-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.article-link {
+  position: relative;
+  padding-left: 20px;
+  font-size: 0.95rem;
+  color: #e94560;
+  text-decoration: none;
+  transition: all 0.3s;
+  line-height: 1.6;
+}
+
+.article-link::before {
+  content: '→';
+  position: absolute;
+  left: 0;
+}
+
+.article-link:hover {
+  color: #ff6b81;
+  padding-left: 25px;
+}
+
+.media-button-container {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 15px;
+  padding-top: 15px;
+  border-top: 2px solid #0f3460;
+}
+
+.media-btn {
+  background: #0f3460;
+  border: 2px solid #533483;
+  color: #eee;
+  padding: 10px 20px;
+  font-family: 'Press Start 2P', cursive;
+  font-size: 0.7rem;
+  cursor: pointer;
+  transition: all 0.3s;
+  position: relative;
+  overflow: hidden;
+}
+
+.media-btn::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: rgba(233, 69, 96, 0.3);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: width 0.5s, height 0.5s;
+}
+
+.media-btn:hover::before {
+  width: 300px;
+  height: 300px;
+}
+
+.media-btn:hover {
+  background: #533483;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(233, 69, 96, 0.4);
+}
+
+@media (max-width: 768px) {
+  .exp-header h3 {
+    font-size: 1.1rem;
+  }
+  
+  .exp-header {
+    flex-direction: column;
+  }
+  
+  .period {
+    align-self: flex-start;
+  }
+}

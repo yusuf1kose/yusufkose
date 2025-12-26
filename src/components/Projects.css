@@ -1,0 +1,220 @@
+.projects-section {
+  padding: 60px 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.section-title {
+  text-align: center;
+  font-size: 2.5rem;
+  margin-bottom: 40px;
+  color: #e94560;
+  font-family: 'Press Start 2P', cursive;
+}
+
+.projects-grid {
+  display: grid;
+  gap: 30px;
+}
+
+.project-card {
+  position: relative;
+  background: #16213e;
+  border: 2px solid #0f3460;
+  border-radius: 10px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.card-glow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(
+    circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+    rgba(233, 69, 96, 0.15) 0%,
+    transparent 50%
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.project-card:hover .card-glow {
+  opacity: 1;
+}
+
+.project-card:hover {
+  transform: translateY(-5px);
+  border-color: #533483;
+  box-shadow: 0 10px 30px rgba(233, 69, 96, 0.3);
+}
+
+.card-content {
+  position: relative;
+  z-index: 2;
+  padding: 25px;
+}
+
+.card-header h3 {
+  font-size: 1.5rem;
+  color: #e94560;
+  margin-bottom: 8px;
+  font-family: 'Press Start 2P', cursive;
+  line-height: 1.4;
+}
+
+.subtitle {
+  font-size: 1.1rem;
+  color: #aaa;
+  margin-bottom: 15px;
+}
+
+.tech-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 15px;
+}
+
+.tech-tag {
+  background: #0f3460;
+  color: #eee;
+  padding: 5px 12px;
+  border-radius: 5px;
+  font-size: 0.85rem;
+  border: 1px solid #533483;
+  transition: all 0.3s;
+}
+
+.tech-tag:hover {
+  background: #533483;
+  transform: scale(1.05);
+}
+
+.tech-more {
+  color: #aaa;
+  padding: 5px 12px;
+  font-size: 0.85rem;
+}
+
+.card-body {
+  margin: 20px 0;
+}
+
+.description {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: #ccc;
+  margin-bottom: 20px;
+}
+
+.features {
+  margin-bottom: 20px;
+}
+
+.features-title, .tech-title {
+  font-size: 0.95rem;
+  color: #aaa;
+  margin-bottom: 10px;
+}
+
+.features ul {
+  list-style: none;
+  padding: 0;
+}
+
+.features li {
+  position: relative;
+  padding-left: 20px;
+  margin-bottom: 10px;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #ddd;
+}
+
+.features li::before {
+  content: '→';
+  position: absolute;
+  left: 0;
+  color: #e94560;
+}
+
+.all-tech {
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 2px solid #0f3460;
+}
+
+.card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 2px solid #0f3460;
+}
+
+.project-links {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.project-btn {
+  background: #0f3460;
+  border: 2px solid #533483;
+  color: #eee;
+  padding: 10px 20px;
+  font-family: 'Press Start 2P', cursive;
+  font-size: 0.7rem;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.3s;
+  position: relative;
+  overflow: hidden;
+}
+
+.project-btn::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: rgba(233, 69, 96, 0.3);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: width 0.5s, height 0.5s;
+}
+
+.project-btn:hover::before {
+  width: 300px;
+  height: 300px;
+}
+
+.project-btn:hover {
+  background: #533483;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(233, 69, 96, 0.4);
+}
+
+@media (max-width: 768px) {
+  .section-title {
+    font-size: 1.8rem;
+  }
+  
+  .card-header h3 {
+    font-size: 1.2rem;
+  }
+  
+  .project-btn {
+    font-size: 0.6rem;
+    padding: 8px 16px;
+  }
+}
