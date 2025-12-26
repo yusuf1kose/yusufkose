@@ -18,13 +18,14 @@
   background: #0f3460;
   border: 2px solid #533483;
   color: #eee;
-  padding: 8px 16px;
+  padding: 6px 12px;
   font-family: 'Press Start 2P', cursive;
-  font-size: 10px;
+  font-size: 8px;
   cursor: pointer;
   transition: all 0.3s;
   position: relative;
   overflow: hidden;
+  white-space: nowrap;
 }
 
 .nav-btn::before {
@@ -53,7 +54,7 @@
 
 @media (max-width: 768px) {
   .nav-btn {
-    font-size: 8px;
-    padding: 6px 12px;
+    font-size: 7px;
+    padding: 5px 10px;
   }
 }

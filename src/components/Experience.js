@@ -3,6 +3,7 @@ import './Experience.css';
 import PhotoViewer from './PhotoViewer';
 
 const Experience = () => {
+  const [expandedIndex, setExpandedIndex] = useState(null);
   const [photoViewerOpen, setPhotoViewerOpen] = useState(false);
   const [currentImages, setCurrentImages] = useState([]);
 
@@ -80,15 +81,22 @@ const Experience = () => {
     }
   ];
 
+  const handleCardClick = (index) => {
+    setExpandedIndex(expandedIndex === index ? null : index);
+  };
+
   return (
     <section id="experience" className="experience-section">
       <PhotoViewer media={currentImages} isOpen={photoViewerOpen} onClose={() => setPhotoViewerOpen(false)} />
       <h2 className="section-title">Experience</h2>
-      <div className="experience-grid">
+      <div className={`experience-grid ${expandedIndex !== null ? 'has-expanded' : ''}`}>
         {experiences.map((exp, index) => (
-          <div key={index} className="experience-card">
+          <div 
+            key={index} 
+            className={`experience-card ${expandedIndex === index ? 'expanded' : ''} ${expandedIndex !== null && expandedIndex !== index ? 'collapsed' : ''}`}
+          >
             <div className="card-glow"></div>
-            <div className="card-content">
+            <div className="card-content" onClick={() => handleCardClick(index)}>
               <div className="exp-header">
                 <div className="exp-title-section">
                   <h3>{exp.title}</h3>
@@ -98,42 +106,47 @@ const Experience = () => {
                 <span className="period">{exp.period}</span>
               </div>
               
-              <ul className="achievements">
-                {exp.achievements.map((achievement, idx) => (
-                  <li key={idx}>{achievement}</li>
-                ))}
-              </ul>
-              
-              {exp.articles && exp.articles.length > 0 && (
-                <div className="articles-section">
-                  <p className="articles-title">Published Articles:</p>
-                  <div className="articles-list">
-                    {exp.articles.map((article, idx) => (
-                      <a 
-                        key={idx}
-                        href={article.url} 
-                        target="_blank" 
-                        rel="noopener noreferrer"
-                        className="article-link"
-                      >
-                        {article.title}
-                      </a>
+              {expandedIndex === index && (
+                <div onClick={(e) => e.stopPropagation()}>
+                  <ul className="achievements">
+                    {exp.achievements.map((achievement, idx) => (
+                      <li key={idx}>{achievement}</li>
                     ))}
-                  </div>
-                </div>
-              )}
-              
-              {exp.media && exp.media.length > 0 && (
-                <div className="media-button-container">
-                  <button
-                    className="media-btn"
-                    onClick={() => {
-                      setCurrentImages(exp.media);
-                      setPhotoViewerOpen(true);
-                    }}
-                  >
-                    View Media
-                  </button>
+                  </ul>
+                  
+                  {exp.articles && exp.articles.length > 0 && (
+                    <div className="articles-section">
+                      <p className="articles-title">Published Articles:</p>
+                      <div className="articles-list">
+                        {exp.articles.map((article, idx) => (
+                          <a 
+                            key={idx}
+                            href={article.url} 
+                            target="_blank" 
+                            rel="noopener noreferrer"
+                            className="article-link"
+                          >
+                            {article.title}
+                          </a>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+                  
+                  {exp.media && exp.media.length > 0 && (
+                    <div className="media-button-container">
+                      <button
+                        className="media-btn"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          setCurrentImages(exp.media);
+                          setPhotoViewerOpen(true);
+                        }}
+                      >
+                        View Media
+                      </button>
+                    </div>
+                  )}
                 </div>
               )}
             </div>

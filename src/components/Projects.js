@@ -3,6 +3,7 @@ import './Projects.css';
 import PhotoViewer from './PhotoViewer';
 
 const Projects = () => {
+  const [expandedIndex, setExpandedIndex] = useState(null);
   const [photoViewerOpen, setPhotoViewerOpen] = useState(false);
   const [currentImages, setCurrentImages] = useState([]);
 
@@ -77,78 +78,88 @@ const Projects = () => {
     }
   ];
 
+  const handleCardClick = (index) => {
+    setExpandedIndex(expandedIndex === index ? null : index);
+  };
+
   return (
     <section id="projects" className="projects-section">
       <PhotoViewer media={currentImages} isOpen={photoViewerOpen} onClose={() => setPhotoViewerOpen(false)} />
       <h2 className="section-title">Projects</h2>
-      <div className="projects-grid">
+      <div className={`projects-grid ${expandedIndex !== null ? 'has-expanded' : ''}`}>
         {projects.map((project, index) => (
-          <div key={index} className="project-card">
+          <div 
+            key={index} 
+            className={`project-card ${expandedIndex === index ? 'expanded' : ''} ${expandedIndex !== null && expandedIndex !== index ? 'collapsed' : ''}`}
+          >
             <div className="card-glow"></div>
-            <div className="card-content">
+            <div className="card-content" onClick={() => handleCardClick(index)}>
               <div className="card-header">
                 <h3>{project.title}</h3>
                 <p className="subtitle">{project.subtitle}</p>
                 <div className="tech-tags">
-                  {project.tech.slice(0, 4).map((tech, idx) => (
+                  {project.tech.slice(0, 3).map((tech, idx) => (
                     <span key={idx} className="tech-tag">{tech}</span>
                   ))}
-                  {project.tech.length > 4 && (
-                    <span className="tech-more">+{project.tech.length - 4}</span>
+                  {project.tech.length > 3 && (
+                    <span className="tech-more">+{project.tech.length - 3}</span>
                   )}
                 </div>
               </div>
               
-              <div className="card-body">
-                <p className="description">{project.description}</p>
-                
-                <div className="features">
-                  <p className="features-title">Key Features:</p>
-                  <ul>
-                    {project.features.map((feature, idx) => (
-                      <li key={idx}>{feature}</li>
-                    ))}
-                  </ul>
-                </div>
-                
-                <div className="all-tech">
-                  <p className="tech-title">Technologies:</p>
-                  <div className="tech-tags">
-                    {project.tech.map((tech, idx) => (
-                      <span key={idx} className="tech-tag">{tech}</span>
-                    ))}
+              {expandedIndex === index && (
+                <div className="card-body" onClick={(e) => e.stopPropagation()}>
+                  <p className="description">{project.description}</p>
+                  
+                  <div className="features">
+                    <p className="features-title">Key Features:</p>
+                    <ul>
+                      {project.features.map((feature, idx) => (
+                        <li key={idx}>{feature}</li>
+                      ))}
+                    </ul>
+                  </div>
+                  
+                  <div className="all-tech">
+                    <p className="tech-title">Technologies:</p>
+                    <div className="tech-tags">
+                      {project.tech.map((tech, idx) => (
+                        <span key={idx} className="tech-tag">{tech}</span>
+                      ))}
+                    </div>
+                  </div>
+                  
+                  <div className="card-footer">
+                    <div className="project-links">
+                      <a href={project.github} target="_blank" rel="noopener noreferrer" className="project-btn">
+                        GitHub
+                      </a>
+                      {project.links?.demo && (
+                        <a href={project.links.demo} target="_blank" rel="noopener noreferrer" className="project-btn">
+                          API Docs
+                        </a>
+                      )}
+                      {project.links?.swagger && (
+                        <a href={project.links.swagger} target="_blank" rel="noopener noreferrer" className="project-btn">
+                          Swagger Spec
+                        </a>
+                      )}
+                    </div>
+                    {project.media && project.media.length > 0 && (
+                      <button
+                        className="project-btn media-btn"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          setCurrentImages(project.media);
+                          setPhotoViewerOpen(true);
+                        }}
+                      >
+                        View Media
+                      </button>
+                    )}
                   </div>
                 </div>
-              </div>
-              
-              <div className="card-footer">
-                <div className="project-links">
-                  <a href={project.github} target="_blank" rel="noopener noreferrer" className="project-btn">
-                    GitHub
-                  </a>
-                  {project.links?.demo && (
-                    <a href={project.links.demo} target="_blank" rel="noopener noreferrer" className="project-btn">
-                      API Docs
-                    </a>
-                  )}
-                  {project.links?.swagger && (
-                    <a href={project.links.swagger} target="_blank" rel="noopener noreferrer" className="project-btn">
-                      Swagger Spec
-                    </a>
-                  )}
-                </div>
-                {project.media && project.media.length > 0 && (
-                  <button
-                    className="project-btn media-btn"
-                    onClick={() => {
-                      setCurrentImages(project.media);
-                      setPhotoViewerOpen(true);
-                    }}
-                  >
-                    View Media
-                  </button>
-                )}
-              </div>
+              )}
             </div>
           </div>
         ))}
