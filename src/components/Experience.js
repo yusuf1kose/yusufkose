@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState } from 'react';
 import './Experience.css';
 import PhotoViewer from './PhotoViewer';
 
@@ -6,7 +6,6 @@ const Experience = () => {
   const [expandedIndex, setExpandedIndex] = useState(null);
   const [photoViewerOpen, setPhotoViewerOpen] = useState(false);
   const [currentImages, setCurrentImages] = useState([]);
-  const cardRefs = useRef([]);
 
   const experiences = [
     {
@@ -83,95 +82,95 @@ const Experience = () => {
   ];
 
   const handleCardClick = (index) => {
-    const newIndex = expandedIndex === index ? null : index;
-    setExpandedIndex(newIndex);
-    
-    if (newIndex !== null) {
-      setTimeout(() => {
-        const card = cardRefs.current[newIndex];
-        if (card) {
-          const navHeight = 60;
-          const offset = 20;
-          const elementPosition = card.getBoundingClientRect().top;
-          const offsetPosition = elementPosition + window.pageYOffset - navHeight - offset;
-          
-          window.scrollTo({
-            top: offsetPosition,
-            behavior: 'smooth'
-          });
-        }
-      }, 100);
-    }
+    setExpandedIndex(expandedIndex === index ? null : index);
   };
 
   return (
     <section id="experience" className="experience-section">
       <PhotoViewer media={currentImages} isOpen={photoViewerOpen} onClose={() => setPhotoViewerOpen(false)} />
       <h2 className="section-title">Experience</h2>
-      <div className={`experience-grid ${expandedIndex !== null ? 'has-expanded' : ''}`}>
-        {experiences.map((exp, index) => (
-          <div 
-            key={index}
-            ref={el => cardRefs.current[index] = el}
-            className={`experience-card ${expandedIndex === index ? 'expanded' : ''} ${expandedIndex !== null && expandedIndex !== index ? 'collapsed' : ''}`}
-          >
+      <div className="experience-container">
+        {expandedIndex !== null && (
+          <div className="experience-card expanded">
             <div className="card-glow"></div>
-            <div className="card-content" onClick={() => handleCardClick(index)}>
-              <div className="exp-header">
+            <div className="card-content">
+              <div className="exp-header" onClick={() => handleCardClick(expandedIndex)}>
                 <div className="exp-title-section">
-                  <h3>{exp.title}</h3>
-                  <p className="company">{exp.company}</p>
-                  <p className="location">{exp.location}</p>
+                  <h3>{experiences[expandedIndex].title}</h3>
+                  <p className="company">{experiences[expandedIndex].company}</p>
+                  <p className="location">{experiences[expandedIndex].location}</p>
                 </div>
-                <span className="period">{exp.period}</span>
+                <span className="period">{experiences[expandedIndex].period}</span>
               </div>
               
-              {expandedIndex === index && (
-                <div onClick={(e) => e.stopPropagation()}>
-                  <ul className="achievements">
-                    {exp.achievements.map((achievement, idx) => (
-                      <li key={idx}>{achievement}</li>
-                    ))}
-                  </ul>
-                  
-                  {exp.articles && exp.articles.length > 0 && (
-                    <div className="articles-section">
-                      <p className="articles-title">Published Articles:</p>
-                      <div className="articles-list">
-                        {exp.articles.map((article, idx) => (
-                          <a 
-                            key={idx}
-                            href={article.url} 
-                            target="_blank" 
-                            rel="noopener noreferrer"
-                            className="article-link"
-                          >
-                            {article.title}
-                          </a>
-                        ))}
-                      </div>
+              <div onClick={(e) => e.stopPropagation()}>
+                <ul className="achievements">
+                  {experiences[expandedIndex].achievements.map((achievement, idx) => (
+                    <li key={idx}>{achievement}</li>
+                  ))}
+                </ul>
+                
+                {experiences[expandedIndex].articles && experiences[expandedIndex].articles.length > 0 && (
+                  <div className="articles-section">
+                    <p className="articles-title">Published Articles:</p>
+                    <div className="articles-list">
+                      {experiences[expandedIndex].articles.map((article, idx) => (
+                        <a 
+                          key={idx}
+                          href={article.url} 
+                          target="_blank" 
+                          rel="noopener noreferrer"
+                          className="article-link"
+                        >
+                          {article.title}
+                        </a>
+                      ))}
                     </div>
-                  )}
-                  
-                  {exp.media && exp.media.length > 0 && (
-                    <div className="media-button-container">
-                      <button
-                        className="media-btn"
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          setCurrentImages(exp.media);
-                          setPhotoViewerOpen(true);
-                        }}
-                      >
-                        View Media
-                      </button>
-                    </div>
-                  )}
-                </div>
-              )}
+                  </div>
+                )}
+                
+                {experiences[expandedIndex].media && experiences[expandedIndex].media.length > 0 && (
+                  <div className="media-button-container">
+                    <button
+                      className="media-btn"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setCurrentImages(experiences[expandedIndex].media);
+                        setPhotoViewerOpen(true);
+                      }}
+                    >
+                      View Media
+                    </button>
+                  </div>
+                )}
+              </div>
             </div>
           </div>
-        ))}
+        )}
+        
+        <div className="experience-grid">
+          {experiences.map((exp, index) => (
+            expandedIndex !== index && (
+              <div 
+                key={index}
+                className="experience-card"
+                onClick={() => handleCardClick(index)}
+              >
+                <div className="card-glow"></div>
+                <div className="card-content">
+                  <div className="exp-header">
+                    <div className="exp-title-section">
+                      <h3>{exp.title}</h3>
+                      <p className="company">{exp.company}</p>
+                      <p className="location">{exp.location}</p>
+                    </div>
+                    <span className="period">{exp.period}</span>
+                  </div>
+                </div>
+              </div>
+            )
+          ))}
+        </div>
       </div>
     </section>
   );

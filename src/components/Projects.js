@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState } from 'react';
 import './Projects.css';
 import PhotoViewer from './PhotoViewer';
 
@@ -6,7 +6,6 @@ const Projects = () => {
   const [expandedIndex, setExpandedIndex] = useState(null);
   const [photoViewerOpen, setPhotoViewerOpen] = useState(false);
   const [currentImages, setCurrentImages] = useState([]);
-  const cardRefs = useRef([]);
 
   const projects = [
     {
@@ -80,109 +79,113 @@ const Projects = () => {
   ];
 
   const handleCardClick = (index) => {
-    const newIndex = expandedIndex === index ? null : index;
-    setExpandedIndex(newIndex);
-    
-    if (newIndex !== null) {
-      setTimeout(() => {
-        const card = cardRefs.current[newIndex];
-        if (card) {
-          const navHeight = 60;
-          const offset = 20;
-          const elementPosition = card.getBoundingClientRect().top;
-          const offsetPosition = elementPosition + window.pageYOffset - navHeight - offset;
-          
-          window.scrollTo({
-            top: offsetPosition,
-            behavior: 'smooth'
-          });
-        }
-      }, 100);
-    }
+    setExpandedIndex(expandedIndex === index ? null : index);
   };
 
   return (
     <section id="projects" className="projects-section">
       <PhotoViewer media={currentImages} isOpen={photoViewerOpen} onClose={() => setPhotoViewerOpen(false)} />
       <h2 className="section-title">Projects</h2>
-      <div className={`projects-grid ${expandedIndex !== null ? 'has-expanded' : ''}`}>
-        {projects.map((project, index) => (
-          <div 
-            key={index}
-            ref={el => cardRefs.current[index] = el}
-            className={`project-card ${expandedIndex === index ? 'expanded' : ''} ${expandedIndex !== null && expandedIndex !== index ? 'collapsed' : ''}`}
-          >
+      <div className="projects-container">
+        {expandedIndex !== null && (
+          <div className="project-card expanded">
             <div className="card-glow"></div>
-            <div className="card-content" onClick={() => handleCardClick(index)}>
-              <div className="card-header">
-                <h3>{project.title}</h3>
-                <p className="subtitle">{project.subtitle}</p>
+            <div className="card-content">
+              <div className="card-header" onClick={() => handleCardClick(expandedIndex)}>
+                <h3>{projects[expandedIndex].title}</h3>
+                <p className="subtitle">{projects[expandedIndex].subtitle}</p>
                 <div className="tech-tags">
-                  {project.tech.slice(0, 3).map((tech, idx) => (
+                  {projects[expandedIndex].tech.slice(0, 3).map((tech, idx) => (
                     <span key={idx} className="tech-tag">{tech}</span>
                   ))}
-                  {project.tech.length > 3 && (
-                    <span className="tech-more">+{project.tech.length - 3}</span>
+                  {projects[expandedIndex].tech.length > 3 && (
+                    <span className="tech-more">+{projects[expandedIndex].tech.length - 3}</span>
                   )}
                 </div>
               </div>
               
-              {expandedIndex === index && (
-                <div className="card-body" onClick={(e) => e.stopPropagation()}>
-                  <p className="description">{project.description}</p>
-                  
-                  <div className="features">
-                    <p className="features-title">Key Features:</p>
-                    <ul>
-                      {project.features.map((feature, idx) => (
-                        <li key={idx}>{feature}</li>
-                      ))}
-                    </ul>
-                  </div>
-                  
-                  <div className="all-tech">
-                    <p className="tech-title">Technologies:</p>
-                    <div className="tech-tags">
-                      {project.tech.map((tech, idx) => (
-                        <span key={idx} className="tech-tag">{tech}</span>
-                      ))}
-                    </div>
-                  </div>
-                  
-                  <div className="card-footer">
-                    <div className="project-links">
-                      <a href={project.github} target="_blank" rel="noopener noreferrer" className="project-btn">
-                        GitHub
-                      </a>
-                      {project.links?.demo && (
-                        <a href={project.links.demo} target="_blank" rel="noopener noreferrer" className="project-btn">
-                          API Docs
-                        </a>
-                      )}
-                      {project.links?.swagger && (
-                        <a href={project.links.swagger} target="_blank" rel="noopener noreferrer" className="project-btn">
-                          Swagger Spec
-                        </a>
-                      )}
-                    </div>
-                    {project.media && project.media.length > 0 && (
-                      <button
-                        className="project-btn media-btn"
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          setCurrentImages(project.media);
-                          setPhotoViewerOpen(true);
-                        }}
-                      >
-                        View Media
-                      </button>
-                    )}
+              <div className="card-body" onClick={(e) => e.stopPropagation()}>
+                <p className="description">{projects[expandedIndex].description}</p>
+                
+                <div className="features">
+                  <p className="features-title">Key Features:</p>
+                  <ul>
+                    {projects[expandedIndex].features.map((feature, idx) => (
+                      <li key={idx}>{feature}</li>
+                    ))}
+                  </ul>
+                </div>
+                
+                <div className="all-tech">
+                  <p className="tech-title">Technologies:</p>
+                  <div className="tech-tags">
+                    {projects[expandedIndex].tech.map((tech, idx) => (
+                      <span key={idx} className="tech-tag">{tech}</span>
+                    ))}
                   </div>
                 </div>
-              )}
+                
+                <div className="card-footer">
+                  <div className="project-links">
+                    <a href={projects[expandedIndex].github} target="_blank" rel="noopener noreferrer" className="project-btn">
+                      GitHub
+                    </a>
+                    {projects[expandedIndex].links?.demo && (
+                      <a href={projects[expandedIndex].links.demo} target="_blank" rel="noopener noreferrer" className="project-btn">
+                        API Docs
+                      </a>
+                    )}
+                    {projects[expandedIndex].links?.swagger && (
+                      <a href={projects[expandedIndex].links.swagger} target="_blank" rel="noopener noreferrer" className="project-btn">
+                        Swagger Spec
+                      </a>
+                    )}
+                  </div>
+                  {projects[expandedIndex].media && projects[expandedIndex].media.length > 0 && (
+                    <button
+                      className="project-btn media-btn"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setCurrentImages(projects[expandedIndex].media);
+                        setPhotoViewerOpen(true);
+                      }}
+                    >
+                      View Media
+                    </button>
+                  )}
+                </div>
+              </div>
             </div>
           </div>
-        ))}
+        )}
+        
+        <div className="projects-grid">
+          {projects.map((project, index) => (
+            expandedIndex !== index && (
+              <div 
+                key={index}
+                className="project-card"
+                onClick={() => handleCardClick(index)}
+              >
+                <div className="card-glow"></div>
+                <div className="card-content">
+                  <div className="card-header">
+                    <h3>{project.title}</h3>
+                    <p className="subtitle">{project.subtitle}</p>
+                    <div className="tech-tags">
+                      {project.tech.slice(0, 3).map((tech, idx) => (
+                        <span key={idx} className="tech-tag">{tech}</span>
+                      ))}
+                      {project.tech.length > 3 && (
+                        <span className="tech-more">+{project.tech.length - 3}</span>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )
+          ))}
+        </div>
       </div>
     </section>
   );
